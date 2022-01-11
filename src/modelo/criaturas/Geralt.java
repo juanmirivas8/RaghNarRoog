@@ -20,11 +20,11 @@ public class Geralt extends Ente{
 				utils.RandomNumbers.randomDouble(MIN_DEFENSA, MAX_DEFENSA));
 		
 		//Rellenamos los movimientos base y los copiamos 
-		this.setMovimientos_base(new modelo.Movimiento[7]);
+		this.setMovimientos_base(new modelo.Movimiento[2]);
 		this.getMovimientos_base()[0]= new Aard();
 		this.getMovimientos_base()[1]= new Igni();
 		
-		this.setMovimientos(new modelo.Movimiento[7]);
+		this.setMovimientos(new modelo.Movimiento[2]);
 		this.getMovimientos()[0]= (modelo.Movimiento)this.getMovimientos_base()[0].clone();
 		this.getMovimientos()[1]= (modelo.Movimiento)this.getMovimientos_base()[1].clone();
 		
@@ -36,15 +36,17 @@ public class Geralt extends Ente{
 	}
 	
 	@Override
-	public void lanzarMovimiento(Ente e) {
+	public String lanzarMovimiento(Ente rival) {
 		Integer tirada=utils.RandomNumbers.randomNumber(0,100);
 		
+		String retValue=null;
+		
 		if(tirada<=50) {
-			this.getMovimientos()[0].aplicarMovimiento(e);
+			retValue=this.getMovimientos()[0].aplicarMovimiento(rival,this);
 		}else if (tirada>50) {
-			this.getMovimientos()[1].aplicarMovimiento(e);
+			retValue=this.getMovimientos()[1].aplicarMovimiento(rival,this);
 		}
 			
-		
+		return retValue;
 	}
 }

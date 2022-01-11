@@ -38,7 +38,13 @@ public class Resistencia {
 	}
 
 
+	
 
+
+	@Override
+	public String toString() {
+		return nombre + ": " + porcentaje;
+	}
 
 
 	@Override

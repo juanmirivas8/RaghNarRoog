@@ -35,8 +35,19 @@ public class Efecto {
 	}
 
 
-	public void aplicarEfecto(Ente rival, Ente yo) {
+	public String aplicarEfecto(Ente rival, Ente yo) {
+		String retValue=null;
 		
+		return retValue;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return nombre + "-- turnos restantes=" + duracion;
+	}
+	
+	
 	
 }

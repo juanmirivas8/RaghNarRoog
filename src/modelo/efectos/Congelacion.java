@@ -1,9 +1,9 @@
 package modelo.efectos;
 import modelo.Efecto;
-
+import modelo.Ente;
 public class Congelacion extends Efecto{
 	
-	private static final Integer MAX_DURACION = 4;
+	private static final Integer MAX_DURACION = 3;
 	private static final Integer MIN_DURACION = 1;
 	
 	private Boolean aplicado;
@@ -29,8 +29,9 @@ public class Congelacion extends Efecto{
 	}
 
 	@Override
-	public void aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
+	public String aplicarEfecto(Ente rival, Ente yo) {
 		
+		String retValue = null;
 		if(this.getDuracion()>0) {
 			//Si no esta aplicado se aplica y se cambia la variable aplicado
 			if(!this.getAplicado()) {
@@ -40,11 +41,12 @@ public class Congelacion extends Efecto{
 			
 			this.setDuracion(this.getDuracion()-1);
 			
-			if(this.getDuracion()==0) {
-				//Si el turno es 0 revertimos el efecto
-				rival.setDefensa(rival.getDefensa_base());
-			}
+			
+		}else if(this.getDuracion()==0) {
+			//Si el turno es 0 revertimos el efecto
+			rival.setDefensa(rival.getDefensa_base());
 		}
 		
+		return retValue;
 	}
 }

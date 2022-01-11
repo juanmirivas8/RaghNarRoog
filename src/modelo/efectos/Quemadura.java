@@ -1,11 +1,11 @@
 package modelo.efectos;
 import modelo.Efecto;
-import modelo.Resistencia;
+
 public class Quemadura extends Efecto{
 	private static final Integer MAX_DURACION = 5;
 	private static final Integer MIN_DURACION = 2;
 	
-	private Integer contador=1;
+	
 	public Quemadura(Integer duracion) {
 		super("Quemadura",duracion);
 	}
@@ -15,30 +15,37 @@ public class Quemadura extends Efecto{
 		
 	}
 	
-	
+
 	@Override
-	public void aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
+	public String aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
 		
-		if(this.getDuracion()>0) {
-			Double damage = yo.getAtaque()*0.05*contador;
-			Resistencia r = null;
+		String retValue = null;
+		
+		if(this.getDuracion() == 0) {
+			//Si el turno es 0 revertimos el efecto
+			for(int i=0;i < rival.getResistencias().length;i++) {
+				rival.getResistencias()[i].setPorcentaje(rival.getResistencias_base()[i].getPorcentaje());
+			}
 			
-			if(rival.getResistencias()!=null) {
-				for (int i = 0; i < rival.getResistencias().length; i++) {
-					if (rival.getResistencias()[i].getEfecto() == this.getClass()) {
-						r = rival.getResistencias()[i];
-					}
+			retValue=this.toString();
+			
+		}
+		else if(this.getDuracion() > 0) {
+			
+			retValue=this.toString();
+			
+			for(int i=0;i < rival.getResistencias().length;i++) {
+				rival.getResistencias()[i].setPorcentaje(rival.getResistencias()[i].getPorcentaje()-0.05);
+				
+				if(rival.getResistencias()[i].getPorcentaje() < 0.0) {
+					rival.getResistencias()[i].setPorcentaje(0.0);
 				}
 			}
 			
-			Double defensa;
-			defensa = (r != null) ? (r.getPorcentaje()) : (0.0);
-			damage-=damage*defensa;
-			contador++;
-			
-			rival.setVida(rival.getVida()-damage);
 			this.setDuracion(this.getDuracion()-1);
-			
+
 		}
+		
+		return retValue;
 	}
 }

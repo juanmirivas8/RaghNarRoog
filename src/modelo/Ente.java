@@ -25,9 +25,9 @@ public class Ente {
 		this.vida=this.vida_base;
 		this.ataque=this.ataque_base;
 		this.defensa=this.defensa_base;
-		this.efectos=new Efecto[8];
-		this.resistencias_base= new Resistencia[8];
-		this.resistencias= new Resistencia[8];
+		this.efectos=new Efecto[2];
+		this.resistencias_base= new Resistencia[2];
+		this.resistencias= new Resistencia[2];
 	}
 
 	public String getNombre() {
@@ -126,8 +126,39 @@ public class Ente {
 		this.movimientos = movimientos;
 	}
 	
-	public void lanzarMovimiento(Ente e) {
+	public String lanzarMovimiento(Ente rival) {
+		String retValue=null;
 		
+		return retValue;
 	}
+		
+	
+	
+	public String[] aplicarEfectos(Ente rival) {
+		
+		String[] retValue=new String[this.efectos.length];
+		
+		for(int i = 0; i < rival.getEfectos().length; i++) {
+			if(rival.getEfectos()[i]!=null) {
+				retValue[i]=rival.getEfectos()[i].aplicarEfecto(rival, this);
+				if(rival.getEfectos()[i].getDuracion()<=0) {
+					rival.getEfectos()[i]=null;
+				}
+			}
+		}
+		
+		return retValue;
+	}
+	
+	public Boolean isAlive() {
+		Boolean ret=false;
+		
+		if(this.getVida()>0.0) {
+			ret=true;
+		}
+		
+		return ret;
+	}
+
 	
 }

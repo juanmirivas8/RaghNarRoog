@@ -1,7 +1,7 @@
 package modelo;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+
 
 import utils.RandomNumbers;
 
@@ -98,74 +98,89 @@ public class Movimiento {
 		this.efecto = efecto;
 	}
 
-	public void aplicarMovimiento(Ente e) {
+	public String aplicarMovimiento(Ente rival, Ente yo) {
 
-		// 1º - Encontramos la resistencia que coincide con el efecto del ataque
 		Resistencia r = null;
-		Double damage;
 		
-		if(e.getResistencias()!=null) {
-			for (int i = 0; i < e.getResistencias().length; i++) {
-				if (e.getResistencias()[i].getEfecto() == this.getEfecto()) {
-					r = e.getResistencias()[i];
+		//Buscamos la resistencia que corresponde al tipo de efecto que aplica
+		if(rival.getResistencias()!=null) {
+			for (int i = 0; i < rival.getResistencias().length; i++) {
+				if (rival.getResistencias()[i].getEfecto() == this.getEfecto()) {
+					r = rival.getResistencias()[i];
 				}
 			}
 		}
 		
-		// 2º- Calculamos la defensa multiplicando el porcentaje de resistencia por la
-		// defensa del ente
-		Double defensa;
-
-		defensa = (r != null) ? (r.getPorcentaje() * e.getDefensa()) : (e.getDefensa());
-
-		/*
-		 * 3º - Calculamos el daño dependiendo de si primero se acierta el ataque, y
-		 * luego de si es critico o no
-		 */
-		if (RandomNumbers.randomChance(this.probabilidad)) {
-
-			damage = this.getMultiplicador() * e.getAtaque();
-
-			if (RandomNumbers.randomChance(this.probabilidad_critico)) {
-				damage *= this.multiplicador_critico;
+	
+		//Ataque es el ataque del atacante por el multiplicador del movimiento
+		Double ataque=this.getMultiplicador() * yo.getAtaque();
+		//Calculamos la defensa mediante la defensa del defensor por su resistencia al tipo de ataque
+		Double defensa=(r != null) ? (r.getPorcentaje() * rival.getDefensa()) : (rival.getDefensa());;
+		//Se calcula si se acierta el ataque o no con la probabilidad de exito del ataque
+		Boolean acierto=RandomNumbers.randomChance(this.probabilidad);
+		//Se calcula si se aplica el ataque o no con la probabilidad de lograr critico
+		Boolean critico=RandomNumbers.randomChance(this.probabilidad_critico);
+		//Se calcula si se aplica el ataque o no con la probabilidad de aplicar efecto
+		Boolean efecto=RandomNumbers.randomChance(this.probabilidad_efecto);
+		//Daño del movimiento
+		Double damage=(ataque-defensa > 0.0) ? (ataque-defensa) : (0.0);
+		
+		String retValue = yo.getNombre()+" uso "+this.getNombre()+" contra "+rival.getNombre();
+		
+		//Si se acierta se sigue con el ataque
+		if(acierto) {
+			//Si el ataque es critico
+			if(critico) {
+				damage*=this.multiplicador_critico;
+				rival.setVida(rival.getVida() - damage);
+				retValue+="\nCritico = Si - Daño = "+damage;
+				
+			}//Si es normal
+			else {
+				rival.setVida(rival.getVida() - damage);
+				retValue+="\nCritico = No --- Daño = "+damage;
 			}
-			/** 4º - Aplicamos el daño al ente */
-			Double res = damage - defensa;
-			if (res > 0.0) {
-				e.setVida(e.getVida() - res);
-			} else {
-				res = 0.0;
-			}
-
-			/** 5º - Aplicamos el efecto */
-			
-			if (RandomNumbers.randomChance(this.probabilidad_efecto)) {
+			//Si se aplica efecto
+			if(efecto) {
+				retValue+=" --- Aplico "+this.efecto.getSimpleName() ;
+				
 				int j = -1;
-			/** 6-º - Para poder aplicar el efecto debemos encontrar si ya hay uno aplicado al ente o 
-			 * si no lo hay encontrar un hueco libre en el array de efectos del ente
-			 * */
-				for (int i = 0; i <= e.getEfectos().length; i++) {
-					if (e.getEfectos()[i] == null && j==-1) {
+				
+				//Buscamos la posicion donde insertar el efecto - Encima del mismo efecto si ya lo tiene o en el primer hueco
+				for (int i = 0; i < rival.getEfectos().length; i++) {
+					if (rival.getEfectos()[i] == null && j==-1) {
 						j=i;
-					} else if (e.getEfectos()[i] != null && this.efecto == e.getEfectos()[i].getClass()) {
+					} else if (rival.getEfectos()[i] != null && this.efecto == rival.getEfectos()[i].getClass()) {
 						j = i;
-						i = e.getEfectos().length;
+						i = rival.getEfectos().length;
 					}
 				}
 				
-				/** 7º - Generamos una nueva instancia de efecto y la asignamos a la posicion encontrada */
-				
-				Constructor[] constructor = this.efecto.getConstructors();
+				Constructor<?>[] constructor = this.efecto.getConstructors();
 				try {
 					Efecto obj = (Efecto)constructor[0].newInstance();
-					e.getEfectos()[j]=(Efecto)obj;
+					rival.getEfectos()[j]=(Efecto)obj;
 				} catch (Exception ex) {
 					
 				}
-					
+				
+			}else {
+				retValue+=" --- No aplico efecto" ;
 			}
+			
+		}else {
+			retValue+="\n"+this.nombre+" fallo";
 		}
+		return retValue;
+	}
 
+	
+	
+	@Override
+	public String toString() {
+		return nombre + " , prob exito= " + probabilidad + " , rango mult= " + min_multiplicador + max_multiplicador + 
+				" , prob critico= "+ probabilidad_critico + " ,mult critico= " + multiplicador_critico + " , prob efecto= "
+				+ probabilidad_efecto+ " ,Efecto apl= "+efecto.getSimpleName();
 	}
 
 	@Override
