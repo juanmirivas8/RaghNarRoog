@@ -32,46 +32,75 @@ public class Controlador {
 
 	private static void iniciarPartida(Partida p) {
 
+		Boolean combate=null;
 		for (int i = 0; i < p.getMonstruos().length; i++) {
-			Combate(p.getProtagonista(), p.getMonstruos()[i]);
-
+			combate=Combate(p.getProtagonista(), p.getMonstruos()[i]);
+			
+			if(combate) {
+				Show.println(p.getProtagonista().getNombre()+" gano el combate");
+			}else {
+				Show.println(p.getMonstruos()[i].getNombre()+" gano el combate");
+			}
+			
 			if (p.endCondition()) {
 				i = p.getMonstruos().length;
 			}
 		}
 	}
 
-	private static String Combate(Ente protagonista, Ente monstruo) {
-
+	private static Boolean Combate(Ente protagonista, Ente monstruo) {
+		String []buffer=null;
+		
+		Show.println("--Empezar Combate--");
+		
 		do {
 			protagonista.aplicarEfectos(monstruo);
-
-			if (!monstruo.isAlive() || !protagonista.isAlive()) {
-
-				break;
+			if (!monstruo.isAlive()) {
+				return true;
+				
+			}else if(!protagonista.isAlive()) {
+				return false;
 			}
-
+			
 			monstruo.aplicarEfectos(protagonista);
-
-			if (!monstruo.isAlive() || !protagonista.isAlive()) {
-
-				break;
+			
+			if (!monstruo.isAlive()) {
+				return true;
+				
+			}else if(!protagonista.isAlive()) {
+				return false;
 			}
 			
-			protagonista.lanzarMovimiento(monstruo);
+			Escaner.waitForKey();
+			GUI.infoEnte(protagonista);
+			Escaner.waitForKey();
+			GUI.infoEnte(monstruo);
 			
-			if (!monstruo.isAlive() || !protagonista.isAlive()) {
-
-				break;
+			Escaner.waitForKey();
+			
+			buffer=protagonista.lanzarMovimiento(monstruo);
+			GUI.muestraMovimiento(buffer);
+			
+			if (!monstruo.isAlive()) {
+				return true;
+				
+			}else if(!protagonista.isAlive()) {
+				return false;
 			}
 			
-			monstruo.lanzarMovimiento(protagonista);
-
-			if (!monstruo.isAlive() || !protagonista.isAlive()) {
-
-				break;
+			Escaner.waitForKey();
+			buffer=monstruo.lanzarMovimiento(protagonista);
+			GUI.muestraMovimiento(buffer);
+			
+			if (!monstruo.isAlive()) {
+				return true;
+				
+			}else if(!protagonista.isAlive()) {
+				return false;
 			}
 		} while (protagonista.isAlive() && monstruo.isAlive());
+		
+		return true;
 	}
 
 }

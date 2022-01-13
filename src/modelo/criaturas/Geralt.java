@@ -32,14 +32,16 @@ public class Geralt extends Ente{
 		this.getResistencias_base()[0]=new RCongelacion(0.5);
 		this.getResistencias_base()[1]=new RFuego(0.5);
 		
+		this.getResistencias()[0]= (modelo.Resistencia)this.getResistencias_base()[0].clone();
+		this.getResistencias()[1]= (modelo.Resistencia)this.getResistencias_base()[1].clone();
 		
 	}
 	
 	@Override
-	public String lanzarMovimiento(Ente rival) {
+	public String[] lanzarMovimiento(Ente rival) {
 		Integer tirada=utils.RandomNumbers.randomNumber(0,100);
 		
-		String retValue=null;
+		String[] retValue=null;
 		
 		if(tirada<=50) {
 			retValue=this.getMovimientos()[0].aplicarMovimiento(rival,this);

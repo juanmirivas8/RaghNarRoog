@@ -126,28 +126,28 @@ public class Ente {
 		this.movimientos = movimientos;
 	}
 	
-	public String lanzarMovimiento(Ente rival) {
-		String retValue=null;
+	public String[] lanzarMovimiento(Ente rival) {
+		String []retValue=null;
 		
 		return retValue;
 	}
 		
 	
 	
-	public String[] aplicarEfectos(Ente rival) {
-		
-		String[] retValue=new String[this.efectos.length];
+	public void aplicarEfectos(Ente rival) {
 		
 		for(int i = 0; i < rival.getEfectos().length; i++) {
 			if(rival.getEfectos()[i]!=null) {
-				retValue[i]=rival.getEfectos()[i].aplicarEfecto(rival, this);
-				if(rival.getEfectos()[i].getDuracion()<=0) {
+				
+				rival.getEfectos()[i].aplicarEfecto(rival, this);
+				
+				if(rival.getEfectos()[i].getDuracion()<0) {
 					rival.getEfectos()[i]=null;
 				}
 			}
 		}
 		
-		return retValue;
+		
 	}
 	
 	public Boolean isAlive() {

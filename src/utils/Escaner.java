@@ -3,6 +3,8 @@ package utils;
 
 import java.util.Scanner;
 
+import vista.Show;
+
 /**
  * Clase que aglutina funciones para recoger información por teclado del usuario
  * @author juanmi_rivas_8
@@ -213,6 +215,14 @@ public class Escaner {
 		}while(invalido);
 		
 		return num;
+	}
+	
+	public static void waitForKey() {
+		Scanner sc = new Scanner(System.in);
+		String wait=null;
+		Show.println("--Pulse una tecla para continuar--");
+		wait=sc.nextLine();
+		
 	}
 	
 }

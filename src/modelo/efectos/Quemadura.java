@@ -17,23 +17,15 @@ public class Quemadura extends Efecto{
 	
 
 	@Override
-	public String aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
-		
-		String retValue = null;
-		
+	public void aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
 		if(this.getDuracion() == 0) {
 			//Si el turno es 0 revertimos el efecto
+			this.setDuracion(this.getDuracion()-1);
 			for(int i=0;i < rival.getResistencias().length;i++) {
 				rival.getResistencias()[i].setPorcentaje(rival.getResistencias_base()[i].getPorcentaje());
 			}
-			
-			retValue=this.toString();
-			
 		}
 		else if(this.getDuracion() > 0) {
-			
-			retValue=this.toString();
-			
 			for(int i=0;i < rival.getResistencias().length;i++) {
 				rival.getResistencias()[i].setPorcentaje(rival.getResistencias()[i].getPorcentaje()-0.05);
 				
@@ -46,6 +38,5 @@ public class Quemadura extends Efecto{
 
 		}
 		
-		return retValue;
 	}
 }

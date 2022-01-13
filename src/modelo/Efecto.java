@@ -35,17 +35,15 @@ public class Efecto {
 	}
 
 
-	public String aplicarEfecto(Ente rival, Ente yo) {
-		String retValue=null;
+	public void aplicarEfecto(Ente rival, Ente yo) {
 		
-		return retValue;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return nombre + "-- turnos restantes=" + duracion;
+		return nombre + "-- turnos restantes (incluyendo el actual) = " + (duracion+1);
 	}
 	
 	

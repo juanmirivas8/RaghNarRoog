@@ -29,10 +29,13 @@ public class Congelacion extends Efecto{
 	}
 
 	@Override
-	public String aplicarEfecto(Ente rival, Ente yo) {
+	public void aplicarEfecto(Ente rival, Ente yo) {
 		
-		String retValue = null;
-		if(this.getDuracion()>0) {
+		if(this.getDuracion()==0) {
+			//Si el turno es 0 revertimos el efecto
+			rival.setDefensa(rival.getDefensa_base());
+			this.setDuracion(this.getDuracion()-1);
+		}else if(this.getDuracion()>0) {
 			//Si no esta aplicado se aplica y se cambia la variable aplicado
 			if(!this.getAplicado()) {
 				rival.setDefensa(0.0);
@@ -40,13 +43,7 @@ public class Congelacion extends Efecto{
 			}
 			
 			this.setDuracion(this.getDuracion()-1);
-			
-			
-		}else if(this.getDuracion()==0) {
-			//Si el turno es 0 revertimos el efecto
-			rival.setDefensa(rival.getDefensa_base());
 		}
 		
-		return retValue;
 	}
 }

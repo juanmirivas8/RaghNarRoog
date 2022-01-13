@@ -98,9 +98,10 @@ public class Movimiento {
 		this.efecto = efecto;
 	}
 
-	public String aplicarMovimiento(Ente rival, Ente yo) {
+	public String[] aplicarMovimiento(Ente rival, Ente yo) {
 
 		Resistencia r = null;
+		String[] retValue = new String[8];
 		
 		//Buscamos la resistencia que corresponde al tipo de efecto que aplica
 		if(rival.getResistencias()!=null) {
@@ -125,24 +126,31 @@ public class Movimiento {
 		//Daño del movimiento
 		Double damage=(ataque-defensa > 0.0) ? (ataque-defensa) : (0.0);
 		
-		String retValue = yo.getNombre()+" uso "+this.getNombre()+" contra "+rival.getNombre();
 		
+		retValue[0]=yo.getNombre();
+		retValue[1]=rival.getNombre();
+		retValue[2]=this.nombre;
+		retValue[3]=acierto.toString();
+		retValue[4]=critico.toString();
+		retValue[5]=efecto.toString();
+		retValue[6]=damage.toString();
+		retValue[7]=this.efecto.getSimpleName();
 		//Si se acierta se sigue con el ataque
 		if(acierto) {
 			//Si el ataque es critico
 			if(critico) {
 				damage*=this.multiplicador_critico;
 				rival.setVida(rival.getVida() - damage);
-				retValue+="\nCritico = Si - Daño = "+damage;
+				retValue[6]=damage.toString();
 				
 			}//Si es normal
 			else {
 				rival.setVida(rival.getVida() - damage);
-				retValue+="\nCritico = No --- Daño = "+damage;
+				
 			}
 			//Si se aplica efecto
 			if(efecto) {
-				retValue+=" --- Aplico "+this.efecto.getSimpleName() ;
+				
 				
 				int j = -1;
 				
@@ -164,12 +172,7 @@ public class Movimiento {
 					
 				}
 				
-			}else {
-				retValue+=" --- No aplico efecto" ;
 			}
-			
-		}else {
-			retValue+="\n"+this.nombre+" fallo";
 		}
 		return retValue;
 	}
@@ -178,7 +181,7 @@ public class Movimiento {
 	
 	@Override
 	public String toString() {
-		return nombre + " , prob exito= " + probabilidad + " , rango mult= " + min_multiplicador + max_multiplicador + 
+		return nombre + " , prob exito= " + probabilidad + " , rango mult= " + min_multiplicador +" - "+ max_multiplicador + 
 				" , prob critico= "+ probabilidad_critico + " ,mult critico= " + multiplicador_critico + " , prob efecto= "
 				+ probabilidad_efecto+ " ,Efecto apl= "+efecto.getSimpleName();
 	}
