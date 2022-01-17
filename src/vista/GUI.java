@@ -1,8 +1,17 @@
 package vista;
 
 import modelo.Ente;
+
+/**
+ * Clase que contiene los principales métodos para impresión por pantalla.
+ * @author juanmi_rivas_8
+ *
+ */
 public class GUI {
 
+	/**
+	 * Metodo que imprime el menu principal
+	 */
 	public static void printMainMenu() {
 		Show.println("\n");
 		Show.println("----------Bienvenido a Ragh Nar Roog----------");
@@ -14,6 +23,10 @@ public class GUI {
 		Show.println("----------------------------------------------");
 	}
 	
+	/**
+	 * Metodo que imprime de forma muy completa al Ente pasado por parámetro
+	 * @param e Ente a imprimir
+	 */
 	public static void infoEnte(Ente e) {
 		Show.println("Nombre: "+e.getNombre());
 		Show.println("Vida base: "+e.getVida_base()+" Ataque base: "+e.getAtaque_base()+" Defensa base: "+e.getDefensa_base());
@@ -50,6 +63,10 @@ public class GUI {
 	}
 	
 
+	/**
+	 * Metodo que imprime de forma completa un movimiento.
+	 * @param datos array de Strings devuelto por la funcion aplicarMovimiento() de la clase Movimiento
+	 */
 	public static void muestraMovimiento(String[]datos) {
 		Show.println("\n");
 		Show.print(datos[0]+" uso "+datos[2]+" contra "+datos[1]);
@@ -71,6 +88,10 @@ public class GUI {
 		Show.println("\n");
 	}
 	
+	/**
+	 * Método que imprime un mensaje dependiendo de si el protagonista ganó o no la partida
+	 * @param winner Boolean que indica si el protagonista ganó o no la partida
+	 */
 	public static void ganadorPartida(Boolean winner) {
 		if(winner) {
 			Show.println("\nVictoria! - Derrotaste a todos los monstruos\n");

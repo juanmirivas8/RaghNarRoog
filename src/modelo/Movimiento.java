@@ -5,6 +5,11 @@ import java.lang.reflect.Constructor;
 
 import utils.RandomNumbers;
 
+/**
+ * Clase "pseudo-abstracta" que contiene toda la información y metodos necesarios para aplicar un movimiento
+ * @author juanmi_rivas_8
+ *
+ */
 public class Movimiento {
 	private String nombre;
 
@@ -14,9 +19,9 @@ public class Movimiento {
 	private Double probabilidad_critico;
 	private Double multiplicador_critico;
 	private Double probabilidad_efecto;
-
 	private Class<? extends Efecto> efecto;
 
+	/******************Getters , Setters y Constructores*****************************/
 	protected Movimiento(String nombre, Double probabilidad, Double min_multiplicador, Double max_multiplicador,
 			Double probabilidad_critico, Double multiplicador_critico, Double probabilidad_efecto,
 			Class<? extends Efecto> efecto) {
@@ -98,6 +103,13 @@ public class Movimiento {
 		this.efecto = efecto;
 	}
 
+	
+	/**
+	 * Metodo que aplica un movimiento de un Ente a otro
+	 * @param rival Ente que recibe el movimiento
+	 * @param yo Ente que lanza el movimiento
+	 * @return Array de Strings con toda la información necesaria para su posterior impresion por pantalla
+	 */
 	public String[] aplicarMovimiento(Ente rival, Ente yo) {
 
 		Resistencia r = null;

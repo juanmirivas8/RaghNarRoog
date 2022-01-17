@@ -1,23 +1,20 @@
 import modelo.resistencias.RCongelacion;
 
+/**
+ * Ejecutable del Proyecto
+ * @author juanmi_rivas_8
+ *
+ */
 public class Ejecutable {
 
+	/**
+	 * Main del ejecutable
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		controlador.Controlador.inicioPrograma();
 		
 		
-	}
-
-	public static void pruebaBusquedaResistencia() {
-		modelo.Resistencia[] rs= {new modelo.resistencias.RFuego(), new modelo.resistencias.RCongelacion(),new modelo.resistencias.RFuego()};
-		modelo.Resistencia re= new modelo.resistencias.RFuego();
-		if(rs!=null) {
-			for (int i = 0; i < rs.length; i++) {
-				if (rs[i].getEfecto() ==  re.getEfecto()){
-					System.out.println(i);
-				}
-			}
-		}
 	}
 }

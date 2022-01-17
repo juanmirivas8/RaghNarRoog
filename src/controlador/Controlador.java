@@ -5,8 +5,16 @@ import utils.Escaner;
 import vista.*;
 import modelo.*;
 
+/**
+ * Controlador del proyecto
+ * @author juanmi_rivas_8
+ *
+ */
 public class Controlador {
 
+	/**
+	 * Metodo que implementa el menu principal y el inicio del programa.
+	 */
 	public static void inicioPrograma() {
 
 		Scanner sc = new Scanner(System.in);
@@ -29,6 +37,10 @@ public class Controlador {
 
 	}
 
+	/**
+	 * Metodo que implementa una partida. Consiste en el protagonista combatiendo con cada monstruo mientras el primero siga vivo y queden monstruos sin derrotar.
+	 * @param p
+	 */
 	private static void iniciarPartida(Partida p) {
 
 		Boolean combate=null;
@@ -49,6 +61,12 @@ public class Controlador {
 		}
 	}
 
+	/**
+	 * Metodo que enfrenta al protagonista contra un monstruo en un combate a muerte.
+	 * @param protagonista Ente protagonista
+	 * @param monstruo Ente adversario del protagonista
+	 * @return
+	 */
 	private static Boolean Combate(Ente protagonista, Ente monstruo) {
 		String []buffer=null;
 		

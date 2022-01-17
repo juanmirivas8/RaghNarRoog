@@ -1,6 +1,11 @@
 package modelo.efectos;
 import modelo.Efecto;
 
+/**
+ * Clase que representa el efecto Quemadura
+ * @author juanmi_rivas_8
+ *
+ */
 public class Quemadura extends Efecto{
 	private static final Integer MAX_DURACION = 5;
 	private static final Integer MIN_DURACION = 2;
@@ -17,6 +22,9 @@ public class Quemadura extends Efecto{
 	
 
 	@Override
+	/**
+	 * Metodo que reduce todas las resistencias un 5% por cada turno activo
+	 */
 	public void aplicarEfecto(modelo.Ente rival, modelo.Ente yo) {
 		if(this.getDuracion() == 0) {
 			//Si el turno es 0 revertimos el efecto

@@ -3,7 +3,11 @@ package modelo.movimientos;
 
 import modelo.efectos.Congelacion;
 
-
+/**
+ * Clase que representa el ataque Aard, el cual provoca Congelacion
+ * @author juanmi_rivas_8
+ *
+ */
 public class Aard extends modelo.Movimiento{
 
 	public static final Double PROBABILIDAD=0.7;

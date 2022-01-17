@@ -3,6 +3,11 @@ import modelo.Ente;
 import modelo.movimientos.*;
 import modelo.resistencias.*;
 
+/**
+ * Clase que representa a Geralt, protagonista del proyecto y brujo profesional
+ * @author juanmi_rivas_8
+ *
+ */
 public class Geralt extends Ente{
 
 	public static final Double MAX_VIDA=1000.0;
@@ -14,6 +19,7 @@ public class Geralt extends Ente{
 	public static final Double MAX_DEFENSA=100.0;
 	public static final Double MIN_DEFENSA=100.0;
 	
+/***********************Getters, setters y constructores*********************/
 	public Geralt() {
 		super("Geralt",utils.RandomNumbers.randomDouble(MIN_VIDA, MAX_VIDA),
 				utils.RandomNumbers.randomDouble(MIN_ATAQUE, MAX_ATAQUE),
@@ -37,6 +43,10 @@ public class Geralt extends Ente{
 		
 	}
 	
+	/**
+	 * Metodo que implementa el lanzamiento automatico por parte del ente en cuestion. Notese que no todos los movimientos tienen por qué tener la misma probabilidad.
+	 * @return Array de String para la posterior impresion del movimiento aplicado
+	 */
 	@Override
 	public String[] lanzarMovimiento(Ente rival) {
 		Integer tirada=utils.RandomNumbers.randomNumber(0,100);

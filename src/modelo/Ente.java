@@ -1,7 +1,10 @@
 package modelo;
 
-
-
+/**
+ * Clase "pseudo-abstracta" que representa un ser, con todos los atributos y métodos necesarios
+ * @author juanmi_rivas_8
+ *
+ */
 public class Ente {
 	private String nombre;
 	private Double vida_base;
@@ -16,6 +19,8 @@ public class Ente {
 	private Double defensa;
 	private Resistencia[] resistencias;
 	private Movimiento[] movimientos;
+	
+	/******************Getters , Setters y Constructores*****************************/
 	
 	protected Ente(String nombre, Double vida_base, Double ataque_base, Double defensa_base) {
 		this.nombre = nombre;
@@ -126,6 +131,12 @@ public class Ente {
 		this.movimientos = movimientos;
 	}
 	
+	
+	/**
+	 * Metodo "pseudo-abstracta" que se encarga de lanzar un movimiento aleatoriamente. Cada ente puede tener distintos ataques y éstos pueden tener distintas probabilidades.
+	 * @param rival Ente rival al que se va a aplicar el movimiento.
+	 * @return Array de Strings para imprimir posteriormente
+	 */
 	public String[] lanzarMovimiento(Ente rival) {
 		String []retValue=null;
 		
@@ -133,7 +144,10 @@ public class Ente {
 	}
 		
 	
-	
+	/**
+	 * Metodo que recorre el array de efectos del Ente y los aplica. Si la duración del efecto ha pasado, borra el efecto.
+	 * @param rival Ente rival del que se leerán datos si es necesario
+	 */
 	public void aplicarEfectos(Ente rival) {
 		
 		for(int i = 0; i < this.getEfectos().length; i++) {
@@ -150,6 +164,10 @@ public class Ente {
 		
 	}
 	
+	/**
+	 * Metodo que indica si el Ente está vivo o muerto
+	 * @return Boolean true si vida > 0.0, false si <= 0.0
+	 */
 	public Boolean isAlive() {
 		Boolean ret=false;
 		

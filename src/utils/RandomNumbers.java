@@ -2,10 +2,15 @@ package utils;
 
 import java.util.Random;
 
+/**
+ * Clase con multiples métodos de generacion de numeros aleatorios y probabilidades
+ * @author juanmi_rivas_8
+ *
+ */
 public class RandomNumbers {
 
 	/**
-	 * Funcion que devuelve un entero pseudoaleatorio entre inferior y superior
+	 * Funcion que devuelve un Integer pseudoaleatorio entre inferior y superior
 	 * ambos incluidos
 	 * 
 	 * @param inf Rango inferior
@@ -22,6 +27,14 @@ public class RandomNumbers {
 		return  Integer.valueOf((int)(Math.random() * (sup - inf + 1) + inf));
 	}
 
+	/**
+	 * Funcion que devuelve un Double pseudoaleatorio entre inferior y superior
+	 * ambos incluidos(2 decimales)
+	 * 
+	 * @param inf Rango inferior
+	 * @param sup Rango superior
+	 * @return Entero pseudoaleatorio entre inferior y superior
+	 */
 	public static Double randomDouble(Double inf, Double sup) {
 		
 		Double aux = 0.0;
@@ -36,6 +49,11 @@ public class RandomNumbers {
 		return num;
 	}
 	
+	/**
+	 * Metodo que devuelve true o false aleatoriamente dependiendo de una probabilidad pasada por parametro
+	 * @param probabilidad Double que representa una probabilidad
+	 * @return true si la probabilidad se encuentra entre 0.0 y el numero generado aleatoriamente(1.0)
+	 */
 	public static boolean randomChance(Double probabilidad) {
 		boolean resultado;
 		

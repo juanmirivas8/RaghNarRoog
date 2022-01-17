@@ -2,7 +2,11 @@ package modelo.movimientos;
 
 import modelo.efectos.Quemadura;
 
-
+/**
+ * Clase que representa el ataque Igni, el cual provoca Quemadura
+ * @author juanmi_rivas_8
+ *
+ */
 public class Igni extends modelo.Movimiento{
 
 	public static final Double PROBABILIDAD=0.6;
