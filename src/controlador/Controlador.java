@@ -9,7 +9,6 @@ public class Controlador {
 
 	public static void inicioPrograma() {
 
-		Partida p = new Partida();
 		Scanner sc = new Scanner(System.in);
 		Integer opcion = 0;
 
@@ -22,7 +21,7 @@ public class Controlador {
 				Show.println("Salida correcta del programa");
 				opcion = 0;
 			}
-			case 1 -> iniciarPartida(p);
+			case 1 -> iniciarPartida(new Partida());
 			default -> Show.println("Error - Opcion incorrecta");
 			}
 
@@ -38,12 +37,14 @@ public class Controlador {
 			
 			if(combate) {
 				Show.println(p.getProtagonista().getNombre()+" gano el combate");
+				p.getMonstruos()[i]=null;
 			}else {
 				Show.println(p.getMonstruos()[i].getNombre()+" gano el combate");
 			}
 			
 			if (p.endCondition()) {
 				i = p.getMonstruos().length;
+				GUI.ganadorPartida(combate);
 			}
 		}
 	}
@@ -51,10 +52,12 @@ public class Controlador {
 	private static Boolean Combate(Ente protagonista, Ente monstruo) {
 		String []buffer=null;
 		
-		Show.println("--Empezar Combate--");
+		Show.println("\n--Empieza el combate entre "+protagonista.getNombre()+" y "+monstruo.getNombre()+" --\n");
 		
 		do {
-			protagonista.aplicarEfectos(monstruo);
+			
+			monstruo.aplicarEfectos(protagonista);
+			
 			if (!monstruo.isAlive()) {
 				return true;
 				
@@ -62,8 +65,7 @@ public class Controlador {
 				return false;
 			}
 			
-			monstruo.aplicarEfectos(protagonista);
-			
+			protagonista.aplicarEfectos(monstruo);
 			if (!monstruo.isAlive()) {
 				return true;
 				

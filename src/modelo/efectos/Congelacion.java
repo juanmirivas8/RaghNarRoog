@@ -33,12 +33,12 @@ public class Congelacion extends Efecto{
 		
 		if(this.getDuracion()==0) {
 			//Si el turno es 0 revertimos el efecto
-			rival.setDefensa(rival.getDefensa_base());
+			yo.setDefensa(yo.getDefensa_base());
 			this.setDuracion(this.getDuracion()-1);
 		}else if(this.getDuracion()>0) {
 			//Si no esta aplicado se aplica y se cambia la variable aplicado
 			if(!this.getAplicado()) {
-				rival.setDefensa(0.0);
+				yo.setDefensa(0.0);
 				this.setAplicado(true);
 			}
 			

@@ -21,16 +21,16 @@ public class Quemadura extends Efecto{
 		if(this.getDuracion() == 0) {
 			//Si el turno es 0 revertimos el efecto
 			this.setDuracion(this.getDuracion()-1);
-			for(int i=0;i < rival.getResistencias().length;i++) {
-				rival.getResistencias()[i].setPorcentaje(rival.getResistencias_base()[i].getPorcentaje());
+			for(int i=0;i < yo.getResistencias().length;i++) {
+				yo.getResistencias()[i].setPorcentaje(yo.getResistencias_base()[i].getPorcentaje());
 			}
 		}
 		else if(this.getDuracion() > 0) {
-			for(int i=0;i < rival.getResistencias().length;i++) {
-				rival.getResistencias()[i].setPorcentaje(rival.getResistencias()[i].getPorcentaje()-0.05);
+			for(int i=0;i < yo.getResistencias().length;i++) {
+				yo.getResistencias()[i].setPorcentaje(yo.getResistencias()[i].getPorcentaje()-0.05);
 				
-				if(rival.getResistencias()[i].getPorcentaje() < 0.0) {
-					rival.getResistencias()[i].setPorcentaje(0.0);
+				if(yo.getResistencias()[i].getPorcentaje() < 0.0) {
+					yo.getResistencias()[i].setPorcentaje(0.0);
 				}
 			}
 			

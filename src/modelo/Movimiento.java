@@ -135,6 +135,7 @@ public class Movimiento {
 		retValue[5]=efecto.toString();
 		retValue[6]=damage.toString();
 		retValue[7]=this.efecto.getSimpleName();
+		
 		//Si se acierta se sigue con el ataque
 		if(acierto) {
 			//Si el ataque es critico

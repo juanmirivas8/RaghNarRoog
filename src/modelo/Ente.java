@@ -136,13 +136,13 @@ public class Ente {
 	
 	public void aplicarEfectos(Ente rival) {
 		
-		for(int i = 0; i < rival.getEfectos().length; i++) {
-			if(rival.getEfectos()[i]!=null) {
+		for(int i = 0; i < this.getEfectos().length; i++) {
+			if(this.getEfectos()[i]!=null) {
 				
-				rival.getEfectos()[i].aplicarEfecto(rival, this);
+				this.getEfectos()[i].aplicarEfecto(rival, this);
 				
-				if(rival.getEfectos()[i].getDuracion()<0) {
-					rival.getEfectos()[i]=null;
+				if(this.getEfectos()[i].getDuracion()<0) {
+					this.getEfectos()[i]=null;
 				}
 			}
 		}

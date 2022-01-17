@@ -70,5 +70,13 @@ public class GUI {
 		}
 		Show.println("\n");
 	}
+	
+	public static void ganadorPartida(Boolean winner) {
+		if(winner) {
+			Show.println("\nVictoria! - Derrotaste a todos los monstruos\n");
+		}else {
+			Show.println("\nDerrota! - Ragh Nar Rogh es ahora imparable\n");
+		}
+	}
 
 }
