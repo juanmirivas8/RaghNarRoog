@@ -34,7 +34,7 @@ public class BloodLust extends Efecto{
 		else if(this.getDuracion() > 0) {
 			
 			for(int i=0;i < yo.getEfectos().length;i++) {
-				if(yo.getEfectos()[i].getClass() == Sangrado.class) {
+				if(yo.getEfectos()[i]!=null &&yo.getEfectos()[i].getClass() == Sangrado.class) {
 					rival.setVida(rival.getVida()+rival.getAtaque());
 				}
 			}

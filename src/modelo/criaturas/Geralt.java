@@ -13,8 +13,8 @@ public class Geralt extends Ente{
 	public static final Double MAX_VIDA=1000.0;
 	public static final Double MIN_VIDA=1000.0;
 	
-	public static final Double MAX_ATAQUE=200.0;
-	public static final Double MIN_ATAQUE=200.0;
+	public static final Double MAX_ATAQUE=150.0;
+	public static final Double MIN_ATAQUE=150.0;
 	
 	public static final Double MAX_DEFENSA=100.0;
 	public static final Double MIN_DEFENSA=100.0;

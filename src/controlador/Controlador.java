@@ -67,7 +67,7 @@ public class Controlador {
 	 * @param monstruo Ente adversario del protagonista
 	 * @return
 	 */
-	private static Boolean Combate(Ente protagonista, Ente monstruo) {
+	public static Boolean Combate(Ente protagonista, Ente monstruo) {
 		String []buffer=null;
 		
 		Show.println("\n--Empieza el combate entre "+protagonista.getNombre()+" y "+monstruo.getNombre()+" --\n");

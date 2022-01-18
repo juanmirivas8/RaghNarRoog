@@ -8,7 +8,7 @@ import modelo.Efecto;
  *
  */
 public class Sangrado extends Efecto{
-	private static final Integer MAX_DURACION = 3;
+	private static final Integer MAX_DURACION = 4;
 	private static final Integer MIN_DURACION = 2;
 	
 	
@@ -40,6 +40,8 @@ public class Sangrado extends Efecto{
 				
 				damage=rival.getAtaque();
 				damage=damage/2.0 - yo.getDefensa()*r;
+				
+				damage=(damage<0.0)?(0.0):(damage);
 				yo.setVida(yo.getVida() - damage);
 			}
 			

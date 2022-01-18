@@ -1,3 +1,4 @@
+import modelo.Ente;
 import modelo.resistencias.RCongelacion;
 
 /**
@@ -12,9 +13,6 @@ public class Ejecutable {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 		controlador.Controlador.inicioPrograma();
-		
-		
 	}
 }

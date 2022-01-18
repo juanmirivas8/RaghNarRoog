@@ -38,11 +38,11 @@ public class Ghoul extends Ente {
 		this.getMovimientos()[1] = (modelo.Movimiento) this.getMovimientos_base()[1].clone();
 
 		// Rellenamos las resistencias
-		this.getResistencias_base()[0] = new RCongelacion(0.5);
-		this.getResistencias_base()[1] = new RFuego(0.5);
-		this.getResistencias_base()[2] = new RSangrado(0.5);
-		this.getResistencias_base()[3] = new RContusion(0.5);
-		this.getResistencias_base()[4] = new RBloodLust(0.5);
+		this.getResistencias_base()[0] = new RCongelacion();
+		this.getResistencias_base()[1] = new RFuego();
+		this.getResistencias_base()[2] = new RSangrado();
+		this.getResistencias_base()[3] = new RContusion();
+		this.getResistencias_base()[4] = new RBloodLust();
 
 		this.getResistencias()[0] = (modelo.Resistencia) this.getResistencias_base()[0].clone();
 		this.getResistencias()[1] = (modelo.Resistencia) this.getResistencias_base()[1].clone();

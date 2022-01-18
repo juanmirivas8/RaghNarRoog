@@ -10,10 +10,10 @@ import modelo.efectos.BloodLust;
  */
 public class Mordisco extends modelo.Movimiento{
 
-	public static final Double PROBABILIDAD=0.6;
+	public static final Double PROBABILIDAD=0.7;
 	public static final Double MIN_MULTIPLICADOR=0.5;
 	public static final Double MAX_MULTIPLICADOR=0.75;
-	public static final Double PROBABILIDAD_EFECTO=0.3;
+	public static final Double PROBABILIDAD_EFECTO=0.5;
 	
 	public static final Double PROBABILIDAD_CRITICO=0.3;
 	public static final Double MULTIPLICADOR_CRITICO=2.0;

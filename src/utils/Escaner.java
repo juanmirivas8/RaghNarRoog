@@ -220,7 +220,7 @@ public class Escaner {
 	public static void waitForKey() {
 		Scanner sc = new Scanner(System.in);
 		String wait=null;
-		Show.println("--Pulse una tecla para continuar--");
+		Show.println("--Pulse Enter para continuar--");
 		wait=sc.nextLine();
 		
 	}
