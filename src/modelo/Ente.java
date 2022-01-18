@@ -30,9 +30,9 @@ public class Ente {
 		this.vida=this.vida_base;
 		this.ataque=this.ataque_base;
 		this.defensa=this.defensa_base;
-		this.efectos=new Efecto[2];
-		this.resistencias_base= new Resistencia[2];
-		this.resistencias= new Resistencia[2];
+		this.efectos=new Efecto[5];
+		this.resistencias_base= new Resistencia[5];
+		this.resistencias= new Resistencia[5];
 	}
 
 	public String getNombre() {

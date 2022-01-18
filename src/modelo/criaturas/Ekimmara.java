@@ -4,39 +4,38 @@ import modelo.movimientos.*;
 import modelo.resistencias.*;
 
 /**
- * Clase que representa a Geralt, protagonista del proyecto y brujo profesional
+ * Clase que representa a una Ekimmara, vampiro medio.
  * @author juanmi_rivas_8
  *
  */
-public class Geralt extends Ente{
+public class Ekimmara extends Ente{
 
-	public static final Double MAX_VIDA=1000.0;
-	public static final Double MIN_VIDA=1000.0;
+	public static final Double MAX_VIDA=300.0;
+	public static final Double MIN_VIDA=200.0;
 	
-	public static final Double MAX_ATAQUE=200.0;
-	public static final Double MIN_ATAQUE=200.0;
+	public static final Double MAX_ATAQUE=120.0;
+	public static final Double MIN_ATAQUE=100.0;
 	
-	public static final Double MAX_DEFENSA=100.0;
-	public static final Double MIN_DEFENSA=100.0;
+	public static final Double MAX_DEFENSA=80.0;
+	public static final Double MIN_DEFENSA=60.0;
 	
 /***********************Getters, setters y constructores*********************/
-	public Geralt() {
-		super("Geralt",utils.RandomNumbers.randomDouble(MIN_VIDA, MAX_VIDA),
+	public Ekimmara() {
+		super("Ekimmara",utils.RandomNumbers.randomDouble(MIN_VIDA, MAX_VIDA),
 				utils.RandomNumbers.randomDouble(MIN_ATAQUE, MAX_ATAQUE),
 				utils.RandomNumbers.randomDouble(MIN_DEFENSA, MAX_DEFENSA));
 		
 		//Rellenamos los movimientos base y los copiamos 
-		this.setMovimientos_base(new modelo.Movimiento[4]);
-		this.getMovimientos_base()[0]= new Aard();
-		this.getMovimientos_base()[1]= new Igni();
-		this.getMovimientos_base()[2]= new AtaqueRapido();
-		this.getMovimientos_base()[3]= new AtaquePotente();
+		this.setMovimientos_base(new modelo.Movimiento[2]);
+		this.getMovimientos_base()[0]= new AtaqueRapido();
+		this.getMovimientos_base()[0].setNombre("Zarpazo");
+		this.getMovimientos_base()[1]= new Mordisco();
 		
-		this.setMovimientos(new modelo.Movimiento[4]);
+		
+		this.setMovimientos(new modelo.Movimiento[2]);
 		this.getMovimientos()[0]= (modelo.Movimiento)this.getMovimientos_base()[0].clone();
 		this.getMovimientos()[1]= (modelo.Movimiento)this.getMovimientos_base()[1].clone();
-		this.getMovimientos()[2]= (modelo.Movimiento)this.getMovimientos_base()[2].clone();
-		this.getMovimientos()[3]= (modelo.Movimiento)this.getMovimientos_base()[3].clone();
+		
 		
 		
 		//Rellenamos las resistencias
@@ -64,14 +63,10 @@ public class Geralt extends Ente{
 		
 		String[] retValue=null;
 		
-		if(tirada<=15) {
+		if(tirada<=55) {
 			retValue=this.getMovimientos()[0].aplicarMovimiento(rival,this);
-		}else if (tirada > 15 && tirada <= 35) {
+		}else if (tirada > 55 ) {
 			retValue=this.getMovimientos()[1].aplicarMovimiento(rival,this);
-		}else if(tirada > 35 && tirada <= 70) {
-			retValue=this.getMovimientos()[2].aplicarMovimiento(rival,this);
-		}else if(tirada > 70) {
-			retValue=this.getMovimientos()[3].aplicarMovimiento(rival,this);
 		}
 			
 		return retValue;

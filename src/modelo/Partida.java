@@ -14,20 +14,18 @@ public class Partida {
 	
 	private Ente[] monstruos;
 	private Ente protagonista;
-	private static final Class[] classList = { Ghoul.class, Geralt.class };
+	private static final Class[] classList = { Ghoul.class, Ekimmara.class};
 
 	/******************Getters , Setters y Constructores*****************************/
 	public Partida(Integer nMonstruos) {
 
 		monstruos = new Ente[nMonstruos];
 		protagonista = new Geralt();
-		//this.randomMonsters();
-		monstruos[0]=new Geralt();
-		monstruos[0].setNombre("Lambert");
+		this.randomMonsters();
 	}
 
 	public Partida() {
-		this(1);
+		this(4);
 	}
 
 	public Ente[] getMonstruos() {
@@ -53,13 +51,13 @@ public class Partida {
 		for (int i = 0; i < monstruos.length; i++) {
 			Integer tirada = utils.RandomNumbers.randomNumber(0, 100);
 			
-			if (tirada <= 80) {
+			if (tirada <= 50) {
 				Constructor<?>[] constructor = classList[0].getConstructors();
 				try {
 					Ente obj = (Ente)constructor[0].newInstance();
 					monstruos[i]=obj;
 				} catch (Exception ex) {};
-			} else if (tirada > 80) {
+			} else if (tirada > 50) {
 				Constructor<?>[] constructor = classList[1].getConstructors();
 				try {
 					Ente obj = (Ente)constructor[0].newInstance();

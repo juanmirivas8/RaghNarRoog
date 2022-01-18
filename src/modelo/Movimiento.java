@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 
 
 import utils.RandomNumbers;
+import vista.Show;
 
 /**
  * Clase "pseudo-abstracta" que contiene toda la información y metodos necesarios para aplicar un movimiento
@@ -128,7 +129,7 @@ public class Movimiento {
 		//Ataque es el ataque del atacante por el multiplicador del movimiento
 		Double ataque=this.getMultiplicador() * yo.getAtaque();
 		//Calculamos la defensa mediante la defensa del defensor por su resistencia al tipo de ataque
-		Double defensa=(r != null) ? (r.getPorcentaje() * rival.getDefensa()) : (rival.getDefensa());;
+		Double defensa=(r != null) ? (r.getPorcentaje() * rival.getDefensa()) : (rival.getDefensa());
 		//Se calcula si se acierta el ataque o no con la probabilidad de exito del ataque
 		Boolean acierto=RandomNumbers.randomChance(this.probabilidad);
 		//Se calcula si se aplica el ataque o no con la probabilidad de lograr critico
