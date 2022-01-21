@@ -34,6 +34,7 @@ public class Movimiento {
 		this.multiplicador_critico = multiplicador_critico;
 		this.probabilidad_efecto = probabilidad_efecto;
 		this.efecto = efecto;
+		
 	}
 
 	public Double getMultiplicador() {
